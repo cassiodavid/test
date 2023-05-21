@@ -9,7 +9,7 @@
 
 ## Installation
 
-        Antes de Startar a aplicação executa os comandos do maven (clean) e (compile) pra gerar os artefatos do openApi junto com a documentação do Swagger
+        Antes de Startar a aplicação executa os comandos do maven (clean) e (compile) pra gerar os artefatos do openApi junto com a documentação do Swagger, Configurar o lombok da IDE
 
 ## License
 
