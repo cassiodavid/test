@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: API Mars
+  description: Retorna valores no plano cartesiado dado uma entrada de codigos
+  termsOfService: https://sample.com/terms/
+  contact:
+    name: API Support
+    url: https://www.sample.com/support
+    email: support@sample.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: "1.0"
+servers:
+  - url: https://logalhost:5000/sample
+    description: Development server
+  - url: https://logalhost:5000/sample
+    description: Staging server
+  - url: https://logalhost:5000/sample
+    description: Production server
+components:
+  schemas:
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    roboCoordenadaDTO:
+      type: object
+      properties:
+        x:
+          type: integer
+          format: int32
+        y:
+          type: integer
+          format: int32
+        posicao:
+          type: string
+        entrada:
+          type: string
+        saida:
+          type: string
+  responses:
+    GeneralError:
+      description: General Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GeneralError'
+paths:
+  /rest/mars/{movimentos}:
+    post:
+      summary: Informações sobre movimentações do robo
+      operationId: getMovimentacoes
+      parameters:
+        - name: movimentos
+          in: path
+          required: true
+          description: Valores para a movimentação do robo
+          schema:
+            type: string
+          examples:
+            rest:
+              summary: Summary west
+              value: 1
+            mars:
+              summary: Summary EAST
+              value: 2
+      responses:
+        '200':
+          description: Description 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roboCoordenadaDTO'
+              examples:
+                rest:
+                  summary: summary west
+                  value: |-
+                    {
+                        "x": 0,
+                        "y": 2,
+                        "posicao": "WEST",
+                        "entrada": "MML",
+                        "saida": "(0,2,W)"
+                    }
+                mars:
+                  summary: summary east
+                  value: |-
+                    {
+                        "x": 2,
+                        "y": 0,
+                        "posicao": "EAST",
+                        "entrada": "MML",
+                        "saida": "(0,2,E)"
+                    }
+        default:
+          description: Description default
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
