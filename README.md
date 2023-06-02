@@ -11,6 +11,7 @@
 
         Antes de Startar a aplicação executa os comandos do maven (clean) e (compile) pra gerar os artefatos do openApi junto com a documentação do Swagger, Configurar o lombok da IDE
 
+        http://localhost:8080/swagger-ui/index.html
 ## License
 
 MIT
